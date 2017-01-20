@@ -1,7 +1,4 @@
 "use strict";
-
-
-
 alert('s');
 // Arrays how many people it contains?
 var ANCESTRY_FILE = "[\n  " + [
@@ -48,3 +45,64 @@ var ANCESTRY_FILE = "[\n  " + [
 
 var ancestry = JSON.parse(ANCESTRY_FILE);
 console.log(ancestry.length);
+
+//To find the people in the ancestry data set who were young in 1924
+function filter(array, test) {
+  var passed = [];
+  for (var i = 0; i < array.length; i++) {
+    if (test(array[i]))
+      passed.push(array[i]);
+  }
+  return passed;
+}
+
+console.log(filter(ancestry, function(person) {
+  return person.born > 1900 && person.born < 1925;
+}));
+
+//foreach standard. two arguments: first an array to iterate  and secon a function as  console.log, or alert.
+function forEach(array, action){
+    for (var i = 0; i < array.length; i++) {
+        action(array[i]);
+    }
+}
+
+forEach(["casa", "mare", "montagna"], console.log);
+
+//Tranforming with map.
+// It transforms an array by applying a function to all of its elements and building a new array from the returned values
+function map(array, transform) {
+  var mapped = [];
+  for (var i = 0; i < array.length; i++)
+    mapped.push(transform(array[i]));
+  return mapped;
+}
+
+var overNinety = ancestry.filter(function(person) {
+  return person.died - person.born > 90;
+});
+console.log(map(overNinety, function(person) {
+  return person.name;
+}));
+
+//example would be finding the person with the earliest year of birth in the data set.
+console.log(ancestry.reduce(function(min, cur) {
+  if (cur.born < min.born) return cur;
+  else return min;
+}));
+
+/*function filter(array, test){
+
+    var passed = [];
+    for (var i = 0; i < array.length; i++) {
+        if (test(array[i])){
+            passed.push(array[i]);
+        }
+    }
+    return passed;
+}
+console.log(filter(ancestry, function(persona){
+    var femmine = persona.sex == "f";
+    var maschi = persona.sex == "m";
+    return femmine;
+}));*/
