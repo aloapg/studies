@@ -1,12 +1,14 @@
-var spazio =  documen.getElementsByTagName('h2');
-fucntion sommaRicorsiva (x, y) {
-    debugger:
-    if(y > 0) {
-        sommaRicorsiva(x+1, y-1)
-    }else{
-        return document.write(x);
-    }
+"use strict";
 
+alert("ci sei?");
+
+
+var total = 0, count = 1;
+debugger;
+while (count <= 10) {
+  total += count;
+  count += 1;
 }
+console.log(total);
 
-console.log(sommaRicorsiva(10, 10));
+console.log(sum(range(1, 10)));
