@@ -86,10 +86,27 @@ console.log(map(overNinety, function(person) {
 }));
 
 //example would be finding the person with the earliest year of birth in the data set.
+//reduce condensa un array in un singolo valore combinando i valori progressivamente, da sinistra a destra.
+function reduce(array, combine, start) {
+  var current = start;
+  for (var i = 0; i < array.length; i++)
+    current = combine(current, array[i]);
+  return current;
+}
+
 console.log(ancestry.reduce(function(min, cur) {
   if (cur.born < min.born) return cur;
   else return min;
 }));
+
+//creare un oggetto che associ u nomi alle persone:
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+console.log(byName["Lievijne Jans"]);
+
 
 /*function filter(array, test){
 
